@@ -1,0 +1,20 @@
+.homepage-wrapper {
+  &__bg-image {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    filter: blur(1px);
+  }
+
+  .homepage {
+    position: relative;
+    z-index: 1;
+
+    &__title {
+      h1 {
+        color: white;
+      }
+    }
+  }
+}
