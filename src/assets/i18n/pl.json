@@ -1,4 +1,23 @@
 {
+  "ROUTES.register": "rejestracja",
+  "ROUTES.home": "domek",
+
   "home.background-image": "Tło",
-  "home.title": "Borowiczek"
+  "home.portal-name": "Borowiczek",
+  "home.portal-description": "Portal Społecznościowy dla Miłośników Grzybobrania",
+
+  "forms.login": "Logowanie",
+  "forms.login-button": "Zaloguj się!",
+  "forms.login-no-account-offer": "Nie masz konta? Zarejestruj się",
+
+  "forms.register": "Rejestracja",
+  "forms.register-button": "Utwórz konto!",
+  "forms.register-go-to-login-offer": "Masz już konto? Zaloguj się!",
+
+  "forms.username": "Nazwa użytkownika",
+  "forms.email": "Adres e-mail",
+  "forms.password": "Hasło",
+
+  "forms.email-incorrect": "Adres e-mail jest niepoprawny",
+  "forms.password-incorrect": "Hasło jest niepoprawne"
 }

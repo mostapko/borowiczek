@@ -11,7 +11,8 @@ import { Location } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
 
 const routes: Routes = [
-  { path: '', loadChildren: () => import('./home/home.module').then((mod) => mod.HomeModule) },
+  { path: '', loadChildren: () => import('./startpage/startpage.module').then((mod) => mod.StartpageModule) },
+  { path: 'home', loadChildren: () => import('./home/home.module').then((mod) => mod.HomeModule) },
 ];
 
 

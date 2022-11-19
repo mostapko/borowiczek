@@ -1,0 +1,24 @@
+<div class="login-wrapper">
+  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="login-form__field login-form__email">
+      <label class="login-form__field__label d-flex flex-column">
+        {{ 'forms.email' | translate }}
+        <input class="form-control " type="text" id="email" name="email" formControlName="email">
+      </label>
+      <small class="login-form__field__error" [hidden]="!(!email.valid && email?.dirty && email?.touched && (email?.value.length > 0))">
+        {{ 'forms.email-incorrect' | translate }}
+      </small>
+    </div>
+    <div class="login-form__field login-form__password">
+      <label class="login-form__field__label d-flex flex-column">
+        {{ 'forms.password' | translate }}
+        <input class="form-control " type="password" id="password" name="password" formControlName="password">
+      </label>
+      <small class="login-form__field__error" [hidden]="!(!password.valid && password?.dirty && password?.touched && password?.value.length > 0)">
+        {{ 'forms.password-incorrect' | translate }}
+      </small>
+    </div>
+    <button type="submit" class="login-form__submit-btn btn btn-success" [disabled]="!loginForm.valid">{{ 'forms.login-button' | translate }}</button>
+    <button class="login-form__change-btn" (click)="openLoginRegister()">{{ 'forms.login-no-account-offer' | translate }}</button>
+  </form>
+</div>

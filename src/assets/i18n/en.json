@@ -1,4 +1,24 @@
 {
+  "ROUTES.register": "register",
+  "ROUTES.home": "home",
+
   "home.background-image": "Background Image",
-  "home.title": "Borowichek"
+  "home.portal-name": "Borowiczek",
+  "home.portal-description": "Made with ❤️ for Mycophiles",
+
+  "forms.login": "Login",
+  "forms.login-button": "Log in!",
+  "forms.login-no-account-offer": "No account? Sign up!",
+
+  "forms.register": "Register",
+  "forms.register-button": "Create the account!",
+  "forms.register-go-to-login-offer": "Already have an account? Log in!",
+
+
+  "forms.username": "Username",
+  "forms.email": "Email Address",
+  "forms.password": "Password",
+
+  "forms.email-incorrect": "The email address is not valid",
+  "forms.password-incorrect": "The password is incorrect"
 }

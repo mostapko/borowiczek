@@ -1,0 +1,29 @@
+<div class="homepage-wrapper">
+  <picture>
+    <source srcset="assets/img/home/mushroom-bg.avif" type="image/avif">
+    <source srcset="assets/img/home/mushroom-bg.jpeg" type="image/jpeg">
+    <img draggable="false" class="homepage-wrapper__bg-image"
+         src="assets/img/home/mushroom-bg.jpeg"
+         [alt]="('home.background-image' | translate)" />
+  </picture>
+
+  <div class="container homepage">
+    <div class="homepage__description">
+      <div class="homepage__description__title">
+        <h1>{{ 'home.portal-name' | translate }}</h1>
+      </div>
+      <div class="homepage__description__text">
+        {{ 'home.portal-description' | translate }}
+      </div>
+    </div>
+    <div class="homepage__form">
+      <div class="homepage__form__login" *ngIf="isLoginView">
+        <app-login (showLoginRegister)="showLoginRegister()"></app-login>
+      </div>
+      <div class="homepage__form__register" *ngIf="isRegisterView">
+        <app-register (showLoginRegister)="showLoginRegister()"></app-register>
+      </div>
+    </div>
+  </div>
+</div>
+
