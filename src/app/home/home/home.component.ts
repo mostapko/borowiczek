@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from "../../logic/services/authentication.service";
 import {Subscription} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,10 @@ export class HomeComponent implements OnInit {
         this.username = this.authenticationService.getPersistedUser().username;
       }
     });
+  }
+
+  public signOut(): void {
+    this.authenticationService.logout();
   }
 
 }
