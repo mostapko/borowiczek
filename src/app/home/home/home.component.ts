@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthenticationService} from "../../logic/services/authentication.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+  public username!: string;
+  private authStatus!: Subscription;
+  constructor(private authenticationService: AuthenticationService,) { }
 
   ngOnInit(): void {
+    this.authStatus = this.authenticationService.loggedInStatus$.subscribe(status => {
+      if (status) {
+        this.username = this.authenticationService.getPersistedUser().username;
+      }
+    });
   }
 
 }
