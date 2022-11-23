@@ -34,8 +34,8 @@ jobs:
     - name: List files
       run: echo "ls"
     
-    - uses: actions/upload-artifact@v3
     - name: Create Artifact
+      uses: actions/upload-artifact@v3
       with:
         name: release-${{ steps.date.outputs.date }}
         path: ./dist
