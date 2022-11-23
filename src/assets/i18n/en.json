@@ -1,6 +1,5 @@
 {
   "ROUTES.register": "register",
-  "ROUTES.home": "home",
   "ROUTES.start": "welcome",
   "ROUTES.reset-password": "reset-password",
 
