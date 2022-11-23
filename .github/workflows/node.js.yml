@@ -30,18 +30,15 @@ jobs:
     - name: Get current date
       id: date
       run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H-%M-%S')"
-      
-    - name: List files
-      run: echo "ls"
     
-    - name: Create Artifact
+    - name: Upload release
       uses: actions/upload-artifact@v3
       with:
         name: release-${{ steps.date.outputs.date }}
         path: ./dist
         
-    - name: Download artifact to Caddy directory
+    - name: Download release to server directory
       uses: actions/download-artifact@v3
       with:
         name: release-${{ steps.date.outputs.date }}
-        path: ~/server/deploy/www/borowiczek/
+        path: ~/server/deploy/www/
