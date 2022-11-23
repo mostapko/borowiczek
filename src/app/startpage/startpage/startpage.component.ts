@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
 import { AuthenticationDataService } from "../../logic/services/authentication-data.service";
-import {SettingsDataService} from "../../logic/services/settings-data.service";
+import { SettingsDataService } from "../../logic/services/settings-data.service";
 
 @Component({
   selector: 'app-startpage',
