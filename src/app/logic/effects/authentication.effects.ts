@@ -29,7 +29,7 @@ export class AuthenticationEffects {
               return fromAuthentication.loginSuccess({ user: userData });
             }),
           tap((data: any) => {
-            let route: any = this.localizeService.translateRoute('/home');
+            let route: any = this.localizeService.translateRoute('/');
             this.router.navigate([route]);
           }),
             catchError(() => {
@@ -45,7 +45,7 @@ export class AuthenticationEffects {
     ofType(fromAuthentication.logoutUser),
     tap(() => {
       window.localStorage.clear();
-      let route: any = this.localizeService.translateRoute('/');
+      let route: any = this.localizeService.translateRoute('/start');
       this.router.navigate([route]);
     }),
   ), { dispatch: false });
