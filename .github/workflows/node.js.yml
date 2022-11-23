@@ -10,7 +10,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     strategy:
       matrix:
@@ -26,3 +26,16 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+    
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H-%M-%S')"
+      
+    - name: List files
+      run: echo "ls"
+    
+    - uses: actions/upload-artifact@v3
+    - name: Create Artifact
+      with:
+        name: release-${{ steps.date.outputs.date }}
+        path: ./dist
