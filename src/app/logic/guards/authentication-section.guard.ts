@@ -7,7 +7,7 @@ import { LocalizeRouterService } from "@gilsdav/ngx-translate-router";
 @Injectable({
   providedIn: 'root'
 })
-export class LoggedInGuard implements CanActivate {
+export class AuthenticationSectionGuard implements CanActivate {
   constructor(private authenticationDataService: AuthenticationDataService,
               private router: Router,
               private localizeService: LocalizeRouterService) { }
@@ -15,11 +15,11 @@ export class LoggedInGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.authenticationDataService.getIsUserLoggedIn()
       .pipe(map(isLoggedIn => {
-        if (!isLoggedIn) {
-          let route = this.localizeService.translateRoute('/')
+        if (isLoggedIn) {
+          let route = this.localizeService.translateRoute('/home')
           this.router.navigate([route]);
         }
-        return isLoggedIn;
+        return !isLoggedIn;
       }))
   }
 }

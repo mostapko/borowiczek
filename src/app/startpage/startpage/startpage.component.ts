@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthenticationService} from "../../logic/services/authentication.service";
-import {Observable, Subscription} from "rxjs";
+import { Observable } from "rxjs";
+import { AuthenticationDataService } from "../../logic/services/authentication-data.service";
 
 @Component({
   selector: 'app-startpage',
@@ -9,22 +9,19 @@ import {Observable, Subscription} from "rxjs";
 })
 export class StartpageComponent implements OnInit {
 
-  constructor(public authenticationService: AuthenticationService) { }
+  constructor(public authenticationDataService: AuthenticationDataService) { }
 
   public isLoginView = true;
   public isRegisterView = false;
 
-  private authStatus!: Observable<boolean>;
+  public username$!: Observable<string>;
 
   ngOnInit(): void {
-    this.authStatus = this.authenticationService.loggedInStatus$;
+    this.username$ = this.authenticationDataService.getUserName();
   }
 
   public showLoginRegister(): void {
     this.isRegisterView = !this.isRegisterView;
     this.isLoginView = !this.isLoginView;
   }
-
-
-
 }
