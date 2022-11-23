@@ -2,6 +2,7 @@
   "ROUTES.register": "register",
   "ROUTES.home": "home",
   "ROUTES.start": "welcome",
+  "ROUTES.reset-password": "reset-password",
 
   "home.background-image": "Background Image",
   "home.portal-name": "Borowiczek",
@@ -22,5 +23,7 @@
 
   "forms.username-incorrect": "The username is not valid",
   "forms.email-incorrect": "The email address is not valid",
-  "forms.password-incorrect": "The password is incorrect"
+  "forms.password-incorrect": "The password is incorrect",
+
+  "forms.forgotten-password-email": "Your email address:"
 }

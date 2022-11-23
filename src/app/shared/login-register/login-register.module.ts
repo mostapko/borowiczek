@@ -7,11 +7,13 @@ import {RouterLinkWithHref} from "@angular/router";
 import { RegisterComponent } from './register/register.component';
 import {LocalizeRouterModule} from "@gilsdav/ngx-translate-router";
 import {LoginRegisterRoutingModule} from "./login-register-routing.module";
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ResetPasswordComponent
   ],
   exports: [
     LoginComponent,

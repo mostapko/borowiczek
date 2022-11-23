@@ -1,6 +1,7 @@
 {
   "ROUTES.register": "rejestracja",
   "ROUTES.start": "witaj",
+  "ROUTES.reset-password": "resetowanie-hasla",
 
   "home.background-image": "Tło",
   "home.portal-name": "Borowiczek",
@@ -20,5 +21,7 @@
 
   "forms.username-incorrect": "Niepoprawny login",
   "forms.email-incorrect": "Adres e-mail jest niepoprawny",
-  "forms.password-incorrect": "Hasło jest niepoprawne"
+  "forms.password-incorrect": "Hasło jest niepoprawne",
+
+  "forms.forgotten-password-email": "Podaj adres e-mail"
 }

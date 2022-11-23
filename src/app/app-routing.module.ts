@@ -12,6 +12,7 @@ import { HttpClient } from "@angular/common/http";
 
 const routes: Routes = [
   { path: 'start', loadChildren: () => import('./startpage/startpage.module').then((mod) => mod.StartpageModule) },
+  { path: 'reset-password', loadChildren: () => import('./shared/login-register/login-register.module').then((mod) => mod.LoginRegisterModule) },
   { path: '', loadChildren: () => import('./home/home.module').then((mod) => mod.HomeModule) },
 ];
 
