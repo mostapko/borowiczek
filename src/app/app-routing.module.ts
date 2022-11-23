@@ -9,11 +9,15 @@ import {
 import { TranslateService } from "@ngx-translate/core";
 import { Location } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
+import {LoggedInGuard} from "./logic/guards/logged-in.guard";
 
 const routes: Routes = [
   { path: 'start', loadChildren: () => import('./startpage/startpage.module').then((mod) => mod.StartpageModule) },
   { path: 'reset-password', loadChildren: () => import('./shared/login-register/login-register.module').then((mod) => mod.LoginRegisterModule) },
-  { path: '', loadChildren: () => import('./home/home.module').then((mod) => mod.HomeModule) },
+  { path: '', children: [
+    { path: '', loadChildren: () => import('./home/home.module').then((mod) => mod.HomeModule), canActivate: [LoggedInGuard] },
+    ]
+  }
 ];
 
 
