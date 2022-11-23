@@ -1,0 +1,25 @@
+.register-wrapper {
+  .register-form {
+    display: flex;
+    flex-direction: column;
+
+    &__field {
+      margin-bottom: 20px;
+      &__error {
+        display: flex;
+        height: 0;
+      }
+    }
+
+    &__submit-btn {
+      margin-top: 10px;
+    }
+
+    &__change-btn {
+      margin-top: 10px;
+      background: none;
+      border: none;
+      text-decoration: underline;
+    }
+  }
+}
