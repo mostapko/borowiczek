@@ -19,6 +19,7 @@
   "forms.email": "Email Address",
   "forms.password": "Password",
 
+  "forms.username-incorrect": "The username is not valid",
   "forms.email-incorrect": "The email address is not valid",
   "forms.password-incorrect": "The password is incorrect"
 }

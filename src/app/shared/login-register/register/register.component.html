@@ -5,8 +5,8 @@
         {{ 'forms.username' | translate }}
         <input class="form-control " type="text" id="username" name="username" formControlName="username">
       </label>
-      <small class="register-form__field__error" [hidden]="!(!username.valid && email?.dirty && email?.touched && (email?.value.length > 0))">
-        {{ 'forms.email-incorrect' | translate }}
+      <small class="register-form__field__error" [hidden]="!(!username.valid && username?.dirty && username?.touched && (username?.value.length > 0))">
+        {{ 'forms.username-incorrect' | translate }}
       </small>
     </div>
 

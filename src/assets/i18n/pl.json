@@ -18,6 +18,7 @@
   "forms.email": "Adres e-mail",
   "forms.password": "Hasło",
 
+  "forms.username-incorrect": "Niepoprawny login",
   "forms.email-incorrect": "Adres e-mail jest niepoprawny",
   "forms.password-incorrect": "Hasło jest niepoprawne"
 }
