@@ -1,14 +1,5 @@
-import {Action, createAction, props} from '@ngrx/store';
-import {User} from "../models/user";
-
-const STORAGE = '@ngrx/store/storage';
-
-export class Storage implements Action {
-  readonly type = STORAGE;
-
-  constructor(readonly payload: string) {
-  }
-}
+import { createAction, props } from '@ngrx/store';
+import { User } from "../models/user";
 
 export const loginStart = createAction('[Authentication] Login Start', props<{
     identifier: string;

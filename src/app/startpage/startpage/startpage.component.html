@@ -17,11 +17,11 @@
       </div>
     </div>
     <div class="homepage__form">
-      <div class="homepage__form__login" *ngIf="isLoginView">
-        <app-login (showLoginRegister)="showLoginRegister()"></app-login>
+      <div class="homepage__form__login" *ngIf="(loginRegisterViewType | async) === 0">
+        <app-login></app-login>
       </div>
-      <div class="homepage__form__register" *ngIf="isRegisterView">
-        <app-register (showLoginRegister)="showLoginRegister()"></app-register>
+      <div class="homepage__form__register" *ngIf="(loginRegisterViewType | async) === 1">
+        <app-register></app-register>
       </div>
     </div>
   </div>

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from "@angular/forms";
 import { AuthenticationDataService } from "../../../logic/services/authentication-data.service";
+import {SettingsDataService} from "../../../logic/services/settings-data.service";
 
 @Component({
   selector: 'app-register',
@@ -8,11 +9,11 @@ import { AuthenticationDataService } from "../../../logic/services/authenticatio
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  @Output() public showLoginRegister = new EventEmitter;
   public registerForm: any;
 
   constructor(private formBuilder: FormBuilder,
-              private authenticationDataService: AuthenticationDataService) { }
+              private authenticationDataService: AuthenticationDataService,
+              private settingsDataService: SettingsDataService) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
@@ -28,7 +29,7 @@ export class RegisterComponent implements OnInit {
   }
 
   public openLoginRegister(): void {
-    this.showLoginRegister.emit(true);
+    this.settingsDataService.changeLoginRegisterScreenViewType()
   }
 
   get username() {
