@@ -1,6 +1,7 @@
 {
   "ROUTES.register": "register",
   "ROUTES.home": "home",
+  "ROUTES.start": "welcome",
 
   "home.background-image": "Background Image",
   "home.portal-name": "Borowiczek",

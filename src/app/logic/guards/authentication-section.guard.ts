@@ -16,7 +16,7 @@ export class AuthenticationSectionGuard implements CanActivate {
     return this.authenticationDataService.getIsUserLoggedIn()
       .pipe(map(isLoggedIn => {
         if (isLoggedIn) {
-          let route = this.localizeService.translateRoute('/home')
+          let route = this.localizeService.translateRoute('/')
           this.router.navigate([route]);
         }
         return !isLoggedIn;

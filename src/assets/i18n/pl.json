@@ -1,6 +1,6 @@
 {
   "ROUTES.register": "rejestracja",
-  "ROUTES.home": "domek",
+  "ROUTES.start": "witaj",
 
   "home.background-image": "Tło",
   "home.portal-name": "Borowiczek",

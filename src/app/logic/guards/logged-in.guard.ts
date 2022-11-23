@@ -16,7 +16,7 @@ export class LoggedInGuard implements CanActivate {
     return this.authenticationDataService.getIsUserLoggedIn()
       .pipe(map(isLoggedIn => {
         if (!isLoggedIn) {
-          let route = this.localizeService.translateRoute('/')
+          let route = this.localizeService.translateRoute('/start')
           this.router.navigate([route]);
         }
         return isLoggedIn;
