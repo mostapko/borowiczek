@@ -39,3 +39,9 @@ jobs:
       with:
         name: release-${{ steps.date.outputs.date }}
         path: ./dist
+        
+    - name: Download artifact to Caddy directory
+      uses: actions/download-artifact@v3
+      with:
+        name: release-${{ steps.date.outputs.date }}
+        path: /var/www/borowiczek/
