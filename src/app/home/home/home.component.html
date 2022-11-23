@@ -1,13 +1,2 @@
-<div class="homepage-wrapper">
-  <picture>
-    <source srcset="../../../assets/img/home/mushroom-bg.avif" type="image/avif">
-    <source srcset="../../../assets/img/home/mushroom-bg.jpeg" type="image/jpeg">
-    <img draggable="false" class="homepage-wrapper__bg-image" src="../../../assets/img/home/mushroom-bg.jpeg" [alt]="('home.background-image' | translate)">
-  </picture>
-
-  <div class="container homepage">
-    <div class="homepage__title">
-      <h1>{{ 'home.title' | translate }}</h1>
-    </div>
-  </div>
-</div>
+<h1>Witaj, {{ username | async }}</h1>
+<button (click)="signOut()">Wyloguj</button>

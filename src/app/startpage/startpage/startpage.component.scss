@@ -1,0 +1,56 @@
+@use "../../../styles/variables" as var;
+@use "../../../styles/rwd" as rwd;
+
+.homepage-wrapper {
+  min-height: 100vh;
+
+  &__bg-image {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    filter: blur(1px);
+    color: transparent;
+    object-fit: cover;
+    object-position: 25%;
+
+    @include rwd.respond-from('sm') {
+      object-position: 30%;
+    }
+
+    @include rwd.respond-from('md') {
+      object-position: unset;
+    }
+  }
+
+  .homepage {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    background: var.$white-bg;
+    height: max-content;
+    padding-top: 200px;
+    padding-bottom: 200px;
+
+
+    @include rwd.respond-from('lg') {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    &__description {
+      &__title h1, &__text {
+        color: var.$main-black-font;
+      }
+
+      &__text {
+        margin-bottom: 50px;
+
+        @include rwd.respond-from('lg') {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+  }
+}
