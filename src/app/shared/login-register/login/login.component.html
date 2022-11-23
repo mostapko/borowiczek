@@ -3,7 +3,7 @@
     <div class="login-form__field login-form__email">
       <label class="login-form__field__label d-flex flex-column">
         {{ 'forms.email' | translate }}
-        <input class="form-control " type="text" id="email" name="email" formControlName="email">
+        <input class="form-control " type="email" id="email" name="email" formControlName="email">
       </label>
       <small class="login-form__field__error" [hidden]="!(!email.valid && email?.dirty && email?.touched && (email?.value.length > 0))">
         {{ 'forms.email-incorrect' | translate }}
