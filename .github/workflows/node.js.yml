@@ -44,4 +44,4 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: release-${{ steps.date.outputs.date }}
-        path: /var/www/borowiczek/
+        path: ~/server/deploy/www/borowiczek/
