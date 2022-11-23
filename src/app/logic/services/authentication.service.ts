@@ -11,13 +11,13 @@ export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
   public loginUser(identifier: string, password: string): Observable<any> {
-    let url = environment.apiUrl + '/auth/local'
+    let url = environment.apiUrl + environment.loginUrl;
     return this.http.post<any>(url, { "identifier": identifier, "password": password });
   }
 
   public registerUser(username: string, email: string, password: string): Observable<any> {
-    let url = environment.apiUrl + '/auth/local'
-    return this.http.post<any>(url + '/register', { username, email, password });
+    let url = environment.apiUrl + environment.registerUrl
+    return this.http.post<any>(url, { username, email, password });
 
   }
 

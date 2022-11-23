@@ -29,21 +29,11 @@ export const authenticationReducerTemp = createReducer(
     isLoggedIn: true,
     token: user.token
   })),
-  on(authenticationActions.loginError, (state) => ({
-    ...state,
-    id: '',
-    username: '',
-    email: '',
-    isLoggedIn: false,
-    token: '',
+  on(authenticationActions.loginError, () => ({
+    ...initialUserState
   })),
-  on(authenticationActions.logoutUser, (state) => ({
-    ...state,
-    id: '',
-    username: '',
-    email: '',
-    isLoggedIn: false,
-    token: '',
+  on(authenticationActions.logoutUser, () => ({
+    ...initialUserState
   })),
 );
 
