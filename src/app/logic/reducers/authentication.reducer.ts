@@ -3,7 +3,7 @@ import * as authenticationActions from "../actions/authentication.actions";
 
 export interface UserState {
   id: string,
-  username: string,
+  name: string,
   email: string,
   isLoggedIn: boolean,
   token: string,
@@ -11,7 +11,7 @@ export interface UserState {
 
 const initialUserState: UserState = {
   id: '',
-  username: '',
+  name: '',
   email: '',
   isLoggedIn: false,
   token: '',
@@ -24,8 +24,6 @@ export const authenticationReducerTemp = createReducer(
   on(authenticationActions.loginSuccess, (state, {user}) => ({
     ...state,
     id: user.id,
-    username: user.username,
-    email: user.email,
     isLoggedIn: true,
     token: user.token
   })),
@@ -34,6 +32,11 @@ export const authenticationReducerTemp = createReducer(
   })),
   on(authenticationActions.logoutUser, () => ({
     ...initialUserState
+  })),
+  on(authenticationActions.userDataSetSuccess, (state, {name, email}) => ({
+    ...state,
+    email: email,
+    name: name,
   })),
 );
 

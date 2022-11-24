@@ -26,7 +26,7 @@ const getUserState = createSelector(getUserFeatureState, (state) => {
 export const selectUserAllData = createSelector(getUserState, (state) => state);
 export const selectUserLoggedIn = createSelector(getUserState, (state) => state.isLoggedIn);
 export const selectUserToken = createSelector(getUserState, (state) => state.token);
-export const selectUserName = createSelector(getUserState, (state) => state.username);
+export const selectUserName = createSelector(getUserState, (state) => state.name);
 
 
 // SETINGS

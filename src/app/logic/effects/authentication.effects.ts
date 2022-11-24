@@ -6,6 +6,7 @@ import * as fromAuthentication from '../actions/authentication.actions';
 import { Action } from "@ngrx/store";
 import { Router} from "@angular/router";
 import { LocalizeRouterService } from "@gilsdav/ngx-translate-router";
+import {userDataSetStart} from "../actions/authentication.actions";
 
 @Injectable()
 export class AuthenticationEffects {
@@ -15,20 +16,24 @@ export class AuthenticationEffects {
               private localizeService: LocalizeRouterService) {}
 
   loginUser$: Observable<Action> = createEffect(() => {
+    let userData = {
+        id: '',
+        username: '',
+        email: '',
+        token: '',
+        isAuthenticated: false,
+    };
       return this.actions$.pipe(
         ofType(fromAuthentication.loginStart),
         mergeMap((action) => this.authenticationService.loginUser(action.identifier, action.password).pipe(
             map((data: any) => {
-              let userData = {
-                id: data['user'].id,
-                username: data['user'].username,
-                email: data['user'].email,
-                token: data['jwt'],
-                isAuthenticated: true,
-              }
+              userData['token'] = data['$id'];
+              userData['id'] = data['userId'];
+              userData['isAuthenticated'] = true;
+
               return fromAuthentication.loginSuccess({ user: userData });
             }),
-          tap((data: any) => {
+          tap(() => {
             let route: any = this.localizeService.translateRoute('/');
             this.router.navigate([route]);
           }),
@@ -69,4 +74,22 @@ export class AuthenticationEffects {
       );
     },
   );
+
+
+  loginUserData$: Observable<Action> = createEffect(() => {
+      return this.actions$.pipe(
+        ofType(fromAuthentication.loginSuccess),
+        mergeMap((action) => this.authenticationService.loginUserInfo().pipe(
+            map((data: any) => {
+              return fromAuthentication.userDataSetSuccess({ name: data.name, email: data.email });
+            }),
+            catchError(() => {
+              return of(fromAuthentication.userDataSetError());
+            }),
+          ),
+        ),
+      );
+    },
+  );
+
 }

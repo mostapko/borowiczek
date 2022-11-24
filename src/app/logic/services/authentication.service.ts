@@ -1,24 +1,31 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, from } from "rxjs";
 import { environment } from "../../../environments/environment";
+import { Client, Account, ID } from 'appwrite';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor(private http: HttpClient) { }
+  private client: Client = new Client();
+  private account: Account = new Account(this.client);
 
-  public loginUser(identifier: string, password: string): Observable<any> {
-    let url = environment.apiUrl + environment.loginUrl;
-    return this.http.post<any>(url, { "identifier": identifier, "password": password });
+  constructor() {
+    this.client.setEndpoint(environment.apiUrl)
+      .setProject(environment.apiProjectId);
+  }
+
+  public loginUser(identifier: string,  password: string): Observable<any> {
+    return from(this.account.createEmailSession(identifier, password));
   }
 
   public registerUser(username: string, email: string, password: string): Observable<any> {
-    let url = environment.apiUrl + environment.registerUrl
-    return this.http.post<any>(url, { username, email, password });
+    return from(this.account.create(ID.unique(), email, password, username));
+  }
 
+  public loginUserInfo(): Observable<any> {
+    return from(this.account.get());
   }
 
 }

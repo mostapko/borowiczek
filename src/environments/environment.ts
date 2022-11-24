@@ -4,9 +4,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api.borowiczek.net/api',
+  apiUrl: 'https://api.borowiczek.net/v1',
+  apiProjectId: '637f7cbf827e261eb126',
   loginUrl: '/auth/local',
-  registerUrl: '/auth/local/register'
+  registerUrl: '/account'
 };
 
 /*

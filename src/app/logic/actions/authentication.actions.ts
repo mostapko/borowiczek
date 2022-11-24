@@ -19,3 +19,11 @@ export const registerSuccess = createAction('[Authentication] Register Success')
 export const registerError = createAction('[Authentication] Register Error');
 
 export const logoutUser = createAction('[Authentication] Logout User');
+
+export const userDataSetStart = createAction('[Authentication] Set user data');
+export const userDataSetSuccess = createAction('[Authentication] Set user data success', props<{
+  name: string;
+  email: string;
+}>(), );
+export const userDataSetError = createAction('[Authentication] Set user data error');
+
