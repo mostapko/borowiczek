@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   apiUrl: 'https://api.borowiczek.net/api',
   loginUrl: '/auth/local',
-  registerUrl: '/auth/local/register'
+  registerUrl: '/auth/local/register',
+  allPostsUrl: '/posts',
 };
 
 /*

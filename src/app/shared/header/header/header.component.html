@@ -1,0 +1,14 @@
+<header class="header-wrapper">
+    <div class="container header d-flex align-items-center justify-content-between">
+      <ng-container [ngTemplateOutlet]="(authStatus | async) ? loggedInTemplate : notLoggedInTemplate"></ng-container>
+    </div>
+</header>
+
+<ng-template #loggedInTemplate>
+  <h1>Witaj, {{ username | async }}</h1>
+  <button (click)="signOut()">Wyloguj</button>
+</ng-template>
+
+<ng-template #notLoggedInTemplate>
+
+</ng-template>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from "@ngrx/store";
 import { UserState } from "../reducers/authentication.reducer";
 import { Observable } from "rxjs";
-import { selectUserLoggedIn, selectUserName } from "../reducers";
+import {selectUserLoggedIn, selectUserName, selectUserToken} from "../reducers";
 import * as authenticationActions from "../actions/authentication.actions"
 
 @Injectable({
@@ -14,6 +14,10 @@ export class AuthenticationDataService {
 
   public getUserName(): Observable<string> {
     return this.store.select(selectUserName);
+  }
+
+  public getToken(): Observable<string> {
+    return this.store.select(selectUserToken);
   }
 
   public getIsUserLoggedIn(): Observable<boolean> {
