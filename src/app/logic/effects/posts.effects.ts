@@ -6,6 +6,7 @@ import { Action } from "@ngrx/store";
 import { Router} from "@angular/router";
 import { LocalizeRouterService } from "@gilsdav/ngx-translate-router";
 import { PostsService } from "../services/posts.service";
+import * as fromAuthentication from "../actions/authentication.actions";
 
 @Injectable()
 export class PostsEffects {
@@ -48,7 +49,7 @@ export class PostsEffects {
 
   getOwnAndFollowingPosts$: Observable<Action> = createEffect(() => {
       return this.actions$.pipe(
-        ofType(fromPosts.getOwnAndFollowingPostsStart),
+        ofType(fromPosts.getOwnAndFollowingPostsStart, fromPosts.createNewPostSuccess),
         mergeMap((action) => this.postsService.getOwnAndFollowingPosts().pipe(
             map((d) => {
               return fromPosts.getOwnAndFollowingPostsSuccess({ posts: d['data'] });
