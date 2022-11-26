@@ -52,7 +52,9 @@ export class PostsService {
         .from('posts')
         .update({ liked_by: [...likesArray, this.userId] } ).eq('id', postId));
     }
+    let likesArrayWithRemovedLike = likesArray.filter(item => item !== this.userId);
     return from(this.supabase
-      .from('already-liked').select(''));
+      .from('posts')
+      .update({ liked_by: [...likesArrayWithRemovedLike] } ).eq('id', postId));
   }
 }

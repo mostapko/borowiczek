@@ -20,7 +20,9 @@
       <div class="single-post-item__bottom__likes d-flex align-items-center">
         <fa-icon class="me-1" [icon]="faThumbsUp"></fa-icon>
         {{ post.liked_by.length }}
-        <button (click)="likeAPost(post.id, post.liked_by)" class="ms-2">Polub post</button>
+        <button (click)="likeAPost(post.id, post.liked_by)" class="ms-2">
+          {{ post.liked_by.includes((userId | async)) ? 'Zabierz lajka' : 'Daj lajka' }}
+        </button>
       </div>
     </div>
   </div>
