@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable, from } from "rxjs";
 import { environment } from "../../../environments/environment";
-import { Client, Account, ID } from 'appwrite';
 import { createClient } from '@supabase/supabase-js'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private client: Client = new Client();
   private supabase = createClient(environment.supabaseUrl, environment.supabaseKey)
 
   constructor() {
-    this.client.setEndpoint(environment.apiUrl)
-      .setProject(environment.apiProjectId);
+
   }
 
   public loginUser(identifier: string,  password: string): Observable<any> {

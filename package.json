@@ -32,7 +32,6 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "@supabase/supabase-js": "^2.1.1",
-    "appwrite": "^10.1.0",
     "bootstrap": "^5.2.2",
     "ngrx-store-localstorage": "^14.0.0",
     "rxjs": "~7.5.0",

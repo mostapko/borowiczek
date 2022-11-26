@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {from, Observable} from "rxjs";
 import {createClient, Session} from "@supabase/supabase-js";
 import {environment} from "../../../environments/environment";
-import {Client} from "appwrite";
 import {AuthenticationDataService} from "./authentication-data.service";
 
 @Injectable({
@@ -10,16 +9,11 @@ import {AuthenticationDataService} from "./authentication-data.service";
 })
 export class PostsService {
   private supabase = createClient(environment.supabaseUrl, environment.supabaseKey)
-  private client: Client = new Client();
   private userId!: string;
   private userName!: string;
   private userFollowing!: string[];
 
   constructor(private authenticationDataService: AuthenticationDataService) {
-    this.client.setEndpoint(environment.apiUrl)
-      .setProject(environment.apiProjectId);
-
-
     this.authenticationDataService.selectUserAllData().subscribe((i) => {
       this.userId = i.id;
       this.userName = i.username;
