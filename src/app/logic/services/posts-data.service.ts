@@ -23,6 +23,10 @@ export class PostsDataService {
     }),);
   }
 
+  public likeAPost(postId: number, likesArray: string[]): void {
+    this.store.dispatch(postsActions.likeAPostStart({postId: postId, likesArray: likesArray}));
+  }
+
   public getOwnPosts() {
     this.store.dispatch(postsActions.getOwnPostsStart());
   }

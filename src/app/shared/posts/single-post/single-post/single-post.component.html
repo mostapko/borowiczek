@@ -11,6 +11,7 @@
 
     <div class="single-post-item__center mt-2">
       <div class="single-post-item__center__content">
+        <p>Post Id: {{ post.id }}</p>
         <p>{{ post.content }}</p>
       </div>
     </div>
@@ -18,7 +19,8 @@
     <div class="single-post-item__bottom">
       <div class="single-post-item__bottom__likes d-flex align-items-center">
         <fa-icon class="me-1" [icon]="faThumbsUp"></fa-icon>
-        {{ post.likes }}
+        {{ post.liked_by.length }}
+        <button (click)="likeAPost(post.id, post.liked_by)" class="ms-2">Polub post</button>
       </div>
     </div>
   </div>

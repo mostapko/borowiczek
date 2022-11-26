@@ -16,7 +16,7 @@ const initialUserState: PostsState = {
     created_at: '',
     id: 0,
     images: [],
-    likes: 0,
+    liked_by: [],
   }
 };
 

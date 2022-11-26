@@ -12,3 +12,7 @@ export const getOwnPostsError = createAction('[Posts] Get Own Posts Error');
 export const getOwnAndFollowingPostsStart = createAction('[Posts] Get Own and Following Posts Start');
 export const getOwnAndFollowingPostsSuccess = createAction('[Posts] Get Own and Following Posts Success', props<{ posts: Post[] }>());
 export const getOwnAndFollowingPostsError = createAction('[Posts] Get Own and Following Posts Error');
+
+export const likeAPostStart = createAction('[Posts] Like a Post Start', props<{ postId: number, likesArray: string[]}>());
+export const likeAPostSuccess = createAction('[Posts] Like a Post Success');
+export const likeAPostError = createAction('[Posts] Like a Post Error');

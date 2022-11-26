@@ -3,7 +3,7 @@ export interface Post {
   created_at: string,
   author: string,
   author_name: string,
-  likes: number,
+  liked_by: string[],
   content: string,
   images: string[],
 }

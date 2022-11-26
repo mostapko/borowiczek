@@ -44,4 +44,15 @@ export class PostsService {
       .select('*').in('author', [this.userId, ...this.userFollowing])
       .order('created_at', { ascending: false }));
   }
+
+  public likeAPost(postId: number, likesArray: string[]): Observable<any> {
+    // in the future do the validation and appending on the backend
+    if (!likesArray.includes(this.userId)) {
+      return from(this.supabase
+        .from('posts')
+        .update({ liked_by: [...likesArray, this.userId] } ).eq('id', postId));
+    }
+    return from(this.supabase
+      .from('already-liked').select(''));
+  }
 }

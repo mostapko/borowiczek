@@ -62,6 +62,22 @@ export class PostsEffects {
     },
   );
 
+  likeAPost$: Observable<Action> = createEffect(() => {
+      return this.actions$.pipe(
+        ofType(fromPosts.likeAPostStart),
+        mergeMap((action) => this.postsService.likeAPost(action.postId, action.likesArray).pipe(
+            map((d) => {
+              return d['error'] === null ? fromPosts.likeAPostSuccess() : fromPosts.likeAPostError()
+            }),
+            catchError((err) => {
+              return of(fromPosts.likeAPostError());
+            }),
+          ),
+        ),
+      );
+    },
+  );
+
 
 
 }
