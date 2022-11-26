@@ -1,0 +1,25 @@
+<div class="single-post-item-wrapper mb-5">
+  <div class="single-post-item">
+    <div class="single-post-item__top">
+      <div class="single-post-item__top__author">
+        <strong>{{ post.author_name }}</strong>
+      </div>
+      <div class="single-post-item__top__datetime">
+        {{ date }}
+      </div>
+    </div>
+
+    <div class="single-post-item__center mt-2">
+      <div class="single-post-item__center__content">
+        <p>{{ post.content }}</p>
+      </div>
+    </div>
+
+    <div class="single-post-item__bottom">
+      <div class="single-post-item__bottom__likes d-flex align-items-center">
+        <fa-icon class="me-1" [icon]="faThumbsUp"></fa-icon>
+        {{ post.likes }}
+      </div>
+    </div>
+  </div>
+</div>
