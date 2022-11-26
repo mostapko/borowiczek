@@ -1,2 +1,17 @@
-<h1>Witaj, {{ username | async }}</h1>
-<button (click)="signOut()">Wyloguj</button>
+<div class="home-wrapper">
+  <div class="container home">
+    <h1>Witaj, {{ username | async }}</h1>
+    <button (click)="signOut()">Wyloguj</button>
+
+    <div class="mt-5">
+      <h2>Dodaj nowy post</h2>
+      <app-new-post></app-new-post>
+    </div>
+
+    <div class="mt-5" *ngIf="posts.length > 0">
+      <h2>Wszystkie posty</h2>
+      <app-posts-list [posts]="posts"></app-posts-list>
+    </div>
+
+  </div>
+</div>

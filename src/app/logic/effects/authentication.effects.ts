@@ -6,7 +6,6 @@ import * as fromAuthentication from '../actions/authentication.actions';
 import { Action } from "@ngrx/store";
 import { Router} from "@angular/router";
 import { LocalizeRouterService } from "@gilsdav/ngx-translate-router";
-import {userDataSetStart} from "../actions/authentication.actions";
 
 @Injectable()
 export class AuthenticationEffects {
@@ -27,8 +26,8 @@ export class AuthenticationEffects {
         ofType(fromAuthentication.loginStart),
         mergeMap((action) => this.authenticationService.loginUser(action.identifier, action.password).pipe(
             map((data: any) => {
-              userData['token'] = data['$id'];
-              userData['id'] = data['userId'];
+              userData['token'] = data['data']['session']['access_token'];
+              userData['id'] = data['data']['user']['id'];
               userData['isAuthenticated'] = true;
 
               return fromAuthentication.loginSuccess({ user: userData });
@@ -37,7 +36,7 @@ export class AuthenticationEffects {
             let route: any = this.localizeService.translateRoute('/');
             this.router.navigate([route]);
           }),
-            catchError(() => {
+            catchError((err) => {
               return of(fromAuthentication.loginError());
             }),
           ),
@@ -46,12 +45,30 @@ export class AuthenticationEffects {
     },
   );
 
-  logoutUser$ = createEffect(() => this.actions$.pipe(
-    ofType(fromAuthentication.logoutUser),
+  logoutUser$: Observable<Action> = createEffect(() => {
+      return this.actions$.pipe(
+        ofType(fromAuthentication.logoutUserStart),
+        mergeMap((action) => this.authenticationService.logoutUser().pipe(
+            map((data: any) => {
+              this.router.navigate([this.localizeService.translateRoute('/')]);
+              return fromAuthentication.logoutUserSuccess();
+            }),
+            catchError(() => {
+              return of(fromAuthentication.logoutUserError());
+            }),
+          ),
+        ),
+      );
+    },
+  );
+
+  logoutUserChangeRoute$ = createEffect(() => this.actions$.pipe(
+    ofType(fromAuthentication.logoutUserSuccess),
     tap(() => {
       window.localStorage.clear();
       let route: any = this.localizeService.translateRoute('/start');
       this.router.navigate([route]);
+      location.reload();
     }),
   ), { dispatch: false });
 
@@ -63,7 +80,7 @@ export class AuthenticationEffects {
           action.username,
           action.email,
           action.password).pipe(
-            map(() => {
+            map((d) => {
               return fromAuthentication.registerSuccess();
             }),
             catchError(() => {
@@ -81,10 +98,28 @@ export class AuthenticationEffects {
         ofType(fromAuthentication.loginSuccess),
         mergeMap((action) => this.authenticationService.loginUserInfo().pipe(
             map((data: any) => {
-              return fromAuthentication.userDataSetSuccess({ name: data.name, email: data.email });
+              let email = data['data']['user']['identities'][0]['identity_data']['email'];
+              let username = data['data']['user']['user_metadata']['username'];
+              return fromAuthentication.userDataSetSuccess({ username: username, email: email });
             }),
             catchError(() => {
               return of(fromAuthentication.userDataSetError());
+            }),
+          ),
+        ),
+      );
+    },
+  );
+
+  getUserOwnFollowing$: Observable<Action> = createEffect(() => {
+      return this.actions$.pipe(
+        ofType(fromAuthentication.getUserOwnFollowingStart),
+        mergeMap((action) => this.authenticationService.getUserOwnFollowing(action.userId).pipe(
+            map((data: any) => {
+              return fromAuthentication.getUserOwnFollowingSuccess({ following: data.data[0]['following'] });
+            }),
+            catchError(() => {
+              return of(fromAuthentication.getUserOwnFollowingError());
             }),
           ),
         ),

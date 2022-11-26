@@ -12,6 +12,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { localStorageSync } from 'ngrx-store-localstorage';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
   return localStorageSync({keys: ['user'], rehydrate: true})(reducer);
@@ -41,7 +42,8 @@ export const metaReducers: Array<MetaReducer<State>> = [localStorageSyncReducer]
     AppRoutingModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot(effects),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
