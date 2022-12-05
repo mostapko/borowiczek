@@ -1,9 +1,11 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import * as authenticationActions from "../actions/authentication.actions";
+import {getUserOwnFollowingSuccess} from "../actions/authentication.actions";
 
 export interface UserState {
   id: string,
   username: string,
+  following: string[],
   email: string,
   isLoggedIn: boolean,
   token: string,
@@ -12,6 +14,7 @@ export interface UserState {
 const initialUserState: UserState = {
   id: '',
   username: '',
+  following: [],
   email: '',
   isLoggedIn: false,
   token: '',
@@ -24,16 +27,28 @@ export const authenticationReducerTemp = createReducer(
   on(authenticationActions.loginSuccess, (state, {user}) => ({
     ...state,
     id: user.id,
-    username: user.username,
-    email: user.email,
     isLoggedIn: true,
     token: user.token
   })),
   on(authenticationActions.loginError, () => ({
     ...initialUserState
   })),
-  on(authenticationActions.logoutUser, () => ({
+  on(authenticationActions.logoutUserSuccess, () => ({
     ...initialUserState
+  })),
+  on(authenticationActions.userDataSetSuccess, (state, { username, email }) => ({
+    ...state,
+    email: email,
+    username: username,
+  })),
+  on(authenticationActions.userDataSetSuccess, (state, { username, email }) => ({
+    ...state,
+    email: email,
+    username: username,
+  })),
+  on(authenticationActions.getUserOwnFollowingSuccess, (state, { following }) => ({
+    ...state,
+    following: following
   })),
 );
 

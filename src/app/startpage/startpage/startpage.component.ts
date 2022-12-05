@@ -17,7 +17,7 @@ export class StartpageComponent implements OnInit {
   public username$!: Observable<string>;
 
   ngOnInit(): void {
-    this.username$ = this.authenticationDataService.getUserName();
+    this.username$ = this.authenticationDataService.selectUserName();
     this.loginRegisterViewType = this.settingsDataService.getLoginRegisterScreenViewType();
   }
 }
