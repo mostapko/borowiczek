@@ -13,7 +13,7 @@ export class LoggedInGuard implements CanActivate {
               private localizeService: LocalizeRouterService) { }
 
   canActivate(): Observable<boolean> {
-    return this.authenticationDataService.getIsUserLoggedIn()
+    return this.authenticationDataService.selectIsUserLoggedIn()
       .pipe(map(isLoggedIn => {
         if (!isLoggedIn) {
           let route = this.localizeService.translateRoute('/start')

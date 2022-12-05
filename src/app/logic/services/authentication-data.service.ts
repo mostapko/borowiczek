@@ -2,21 +2,41 @@ import { Injectable } from '@angular/core';
 import { Store } from "@ngrx/store";
 import { UserState } from "../reducers/authentication.reducer";
 import { Observable } from "rxjs";
-import { selectUserLoggedIn, selectUserName } from "../reducers";
+import {selectUserAllData, selectUserFollowing, selectUserId, selectUserLoggedIn, selectUserName} from "../reducers";
 import * as authenticationActions from "../actions/authentication.actions"
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationDataService {
+  private userId!: string;
 
-  constructor(private store: Store<UserState>) {}
+  constructor(private store: Store<UserState>) {
+    this.selectUserId().subscribe((i) => {
+      if (i) {
+        this.userId = i;
+      }
+    });
+  }
 
-  public getUserName(): Observable<string> {
+
+  public selectUserName(): Observable<string> {
     return this.store.select(selectUserName);
   }
 
-  public getIsUserLoggedIn(): Observable<boolean> {
+  public selectUserId(): Observable<string> {
+    return this.store.select(selectUserId);
+  }
+
+  public selectUserFollowing(): Observable<string[]> {
+    return this.store.select(selectUserFollowing);
+  }
+
+  public selectUserAllData(): Observable<UserState> {
+    return this.store.select(selectUserAllData);
+  }
+
+  public selectIsUserLoggedIn(): Observable<boolean> {
     return this.store.select(selectUserLoggedIn);
   }
 
@@ -36,7 +56,11 @@ export class AuthenticationDataService {
   }
 
   public logoutUser(): void {
-    this.store.dispatch(authenticationActions.logoutUser());
+    this.store.dispatch(authenticationActions.logoutUserStart());
+  }
+
+  public getUserOwnFollowing(): void {
+    this.store.dispatch(authenticationActions.getUserOwnFollowingStart({ userId: this.userId } ));
   }
 
 }

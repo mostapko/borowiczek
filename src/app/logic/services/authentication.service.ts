@@ -1,24 +1,47 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, from } from "rxjs";
 import { environment } from "../../../environments/environment";
+import { createClient } from '@supabase/supabase-js'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+  private supabase = createClient(environment.supabaseUrl, environment.supabaseKey)
 
-  constructor(private http: HttpClient) { }
+  constructor() {
 
-  public loginUser(identifier: string, password: string): Observable<any> {
-    let url = environment.apiUrl + environment.loginUrl;
-    return this.http.post<any>(url, { "identifier": identifier, "password": password });
+  }
+
+  public loginUser(identifier: string,  password: string): Observable<any> {
+    return from(this.supabase.auth.signInWithPassword({
+      email: identifier,
+      password: password,
+    }));
   }
 
   public registerUser(username: string, email: string, password: string): Observable<any> {
-    let url = environment.apiUrl + environment.registerUrl
-    return this.http.post<any>(url, { username, email, password });
+    return from(this.supabase.auth.signUp({
+      email: email,
+      password: password,
+      options: {
+        data: {
+          username: username
+        }
+      }
+    }))
+  }
 
+  public logoutUser(): Observable<any> {
+    return from(this.supabase.auth.signOut());
+  }
+
+  public loginUserInfo(): Observable<any> {
+    return from(this.supabase.auth.getUser());
+  }
+
+  public getUserOwnFollowing(userId: string): Observable<any> {
+    return from(this.supabase.from('profiles').select('following').eq('id', userId));
   }
 
 }
